@@ -12,6 +12,7 @@ export default {
         mono: ["Roboto Mono", "monospace"],
       },
       colors: {
+        navbg:"#030C13",
         white: "#fff",
         black: "#000",
         transparent: "#ffffff00",
