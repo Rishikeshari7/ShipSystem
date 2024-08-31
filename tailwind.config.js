@@ -13,6 +13,11 @@ export default {
       },
       colors: {
         navbg:"#030C13",
+        primary:"#1B263B",
+        secondary:"#3A506B",
+        text01:"#E0E0E0",
+        text02:"#9E9E9E",
+
         white: "#fff",
         black: "#000",
         transparent: "#ffffff00",
