@@ -1,15 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Frame from "../assets/Frame 2.png"
 
 import { NavLink } from 'react-router-dom';
 import { NavIcon } from '../Data/NavData';
 
 const SideNav = () => {
-
+  const [tap , setTap]=useState(true);
 
   return (
-    <div className=' text-text02 flex flex-col w-[14rem] py-8 px-5'>
-      <img className='size-14 aspect-square' src={Frame}></img>
+    <div className=' text-text02 flex flex-col max-w-[14rem] py-8 px-5'>
+      <img className='size-14 aspect-square' onClick={()=>setTap(!tap)} src={Frame}></img>
       <div className='flex flex-col space-y-4 mt-8'>
       {
           NavIcon.map((item, key) => (
@@ -23,7 +23,11 @@ const SideNav = () => {
               }
             >
               <item.icon className="text-lg" />
-              <span>{item.name}</span>
+              {
+                tap && <span className='hidden md:flex'>{item.name}</span>
+              }
+                
+              
             </NavLink>
           ))
         }

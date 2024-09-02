@@ -17,6 +17,7 @@ export default {
         secondary:"#3A506B",
         text01:"#E0E0E0",
         text02:"#9E9E9E",
+        gray:"#595959",
 
         white: "#fff",
         black: "#000",
