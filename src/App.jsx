@@ -7,6 +7,7 @@ import Alert from "./Pages/Alert"
 import SatelliteImage from './Pages/SatelliteImage'
 import Setting from "./Pages/Setting"
 import Records from './Pages/Records'
+import "./index.css"
 
 function App() {
 
@@ -14,7 +15,7 @@ function App() {
     <div className='flex bg-navbg w-[100vw] h-[100vh]'>
       <SideNav/>
       {/* MAIN CONTAINER */}
-      <div className='flex flex-1 bg-primary mr-5 my-6 p-10 pt-6 rounded-3xl '>
+      <div className='customScroll flex flex-1 bg-primary mr-5 my-6 p-10 pt-6 rounded-3xl overflow-y-auto '>
         <Routes>
           <Route path='/' element={<Dashboard/>} ></Route>
           <Route path='/map' element={<RealtimeMap/>} ></Route>
