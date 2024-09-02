@@ -39,6 +39,7 @@ const Dashboard = () => {
         </div>
         <Pipeline />
       </div>
+      <div className='w-fit h-[2rem] bg-primary text-primary ' >.</div>
     </div>
   );
 };
