@@ -8,6 +8,8 @@ import DataSent from "../Components/Home/DataSent";
 import Pipeline from "../Components/Home/Pipeline";
 import InTransit from "../Components/Home/InTransit";
 import AisStation from "../Components/Home/AisStation";
+import ShipMap from "../Components/RealtimeMap/ShipMap";
+import { ships } from "../Data/shipdata";
 const Dashboard = () => {
   return (
     <div className="w-full space-y-5">
@@ -20,11 +22,9 @@ const Dashboard = () => {
         ))}
       </div>
       {/* GRAPHICAL DATA */}
-      <div className=" flex w-full flex-wrap gap-10 items-center justify-between">
+      <div className=" flex w-full flex-wrap gap-10 items-end justify-between">
         <ShipAnomaliesChart />
-        <p className="text-[5rem] font-semibold text-yellow-300 border-2 p-10">
-          MAP
-        </p>
+        <ShipMap ships={ships} lat={20.0}  lng={-288.0} max={8} min={6} zoom={false} height={"36vh"} width={"25%"}/>
         <OilSpill />
       </div>
       <h1 className="text-xl font-semibold text-white">Alert Table</h1>

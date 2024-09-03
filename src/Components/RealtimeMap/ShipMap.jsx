@@ -15,7 +15,7 @@ const customIcon = L.divIcon({
   className: "custom-ship-icon", // You can define custom styles here
 });
 
-const ShipMap = ({ ships,lat,lng,max,min,height,width }) => {
+const ShipMap = ({ ships,lat,lng,max,min,zoom,height,width }) => {
   const position = [lat, lng]; // Center of the map
   const circles = [
     { center: [51.508, -392], color: '#2563eb', fillColor: '#1d4ed8', radius: 325000  },
@@ -33,9 +33,11 @@ const ShipMap = ({ ships,lat,lng,max,min,height,width }) => {
     <MapContainer
       center={position}
       zoom={3}
-      style={{ height: "70vh", width: width }}
+      style={{ height: height, width: width }}
       maxZoom={max}
       minZoom={min}
+      zoomControl={zoom}
+      attributionControl={false}
     >
 <TileLayer
   url="https://tile.jawg.io/jawg-matrix/{z}/{x}/{y}{r}.png?access-token={accessToken}"

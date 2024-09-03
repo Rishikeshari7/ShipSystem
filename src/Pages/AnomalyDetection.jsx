@@ -12,7 +12,7 @@ const AnomalyDetection = () => {
       <h1 className="text-4xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-red-700 via-yellow-100 to-red-500">
       Anomaly Detection
       </h1><div className='flex justify-between gap-10 items-start'>
-      <ShipMap ships={ships} lat={15.0}  lng={-287.0} max={8} min={5} width={"80%"} />
+      <ShipMap ships={ships} lat={15.0}  lng={-287.0} max={8} min={5} zoom={true} height={"70vh"} width={"80%"} />
       <RecentAnomalies/>
       </div>
       <div className=''><AnomaliesTable/></div>

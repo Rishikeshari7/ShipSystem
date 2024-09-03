@@ -22,14 +22,14 @@ import { TbBadgeOff } from "react-icons/tb";
       icon: TbBadgeOff,
     },
     {
-      name: "Alert",
-      to: "/alert",
-      icon: TbAlertTriangleFilled,
-    },
-    {
       name: "Satellite Image",
       to: "/satellite",
       icon: FaSatellite,
+    },
+    {
+      name: "Alert",
+      to: "/alert",
+      icon: TbAlertTriangleFilled,
     },
     {
       name: "Records",
