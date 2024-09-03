@@ -8,6 +8,7 @@ import SatelliteImage from './Pages/SatelliteImage'
 import Setting from "./Pages/Setting"
 import Records from './Pages/Records'
 import "./index.css"
+import AnomalyDetection from './Pages/AnomalyDetection'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Dashboard/>} ></Route>
           <Route path='/map' element={<RealtimeMap/>} ></Route>
+          <Route path='anomaly' element={<AnomalyDetection/>} ></Route>
           <Route path='/alert' element={<Alert/>} ></Route>
           <Route path='/records' element={<Records/>} ></Route>
           <Route path='/satellite' element={<SatelliteImage/>} ></Route>

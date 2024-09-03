@@ -5,12 +5,30 @@ import { GrNext, GrPrevious } from "react-icons/gr";
 const ShipTable = () => {
   const [search, setSearch] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedSpeedFilter, setSelectedSpeedFilter] = useState('');
+  const [selectedTimeFilter, setSelectedTimeFilter] = useState('');
   const itemsPerPage = 5;
 
-  const filteredShips = ships.filter(ship =>
-    ship.name.toLowerCase().includes(search.toLowerCase()) ||
-    ship.captain.toLowerCase().includes(search.toLowerCase())
-  );
+
+
+  const filteredShips = ships.filter(ship => {
+    const matchesSearch = ship.name.toLowerCase().includes(search.toLowerCase()) ||
+      ship.captain.toLowerCase().includes(search.toLowerCase());
+
+    const matchesSpeedFilter = selectedSpeedFilter === '' || (
+      (selectedSpeedFilter === 'below 15 knots' && ship.speed < 15) ||
+      (selectedSpeedFilter === 'above 20 knots' && ship.speed > 20)
+    );
+
+    const matchesTimeFilter = selectedTimeFilter === '' || (
+      (selectedTimeFilter === 'last 5 hours' && ship.positionReceived <=5) ||
+      (selectedTimeFilter === 'last 10 hours' && ship.positionReceived <=10) ||
+      (selectedTimeFilter === 'last 15 hours' && ship.positionReceived <=15) ||
+      (selectedTimeFilter === 'last 24 hours' && ship.positionReceived <=24)
+    );
+
+    return matchesSearch && matchesSpeedFilter && matchesTimeFilter;
+  });
 
   const indexOfLastShip = currentPage * itemsPerPage;
   const indexOfFirstShip = indexOfLastShip - itemsPerPage;
@@ -21,11 +39,13 @@ const ShipTable = () => {
 
   const handleCancelClick = () => {
     setSearch('');
+    setSelectedSpeedFilter('');
+    setSelectedTimeFilter('');
   };
 
   return (
-    <div className='text-white'>
-      <div className="mt-2 flex items-center gap-4">
+    <div className='text-white '>
+      <div className="mt-2 flex items-end gap-4">
         <input
           type="text"
           value={search}
@@ -39,7 +59,39 @@ const ShipTable = () => {
         >
           Cancel
         </button>
+        <div className="flex ml-20 gap-10">
+        <div>
+          <label htmlFor="speedFilter">Filter by Speed:</label>
+          <select
+            id="speedFilter"
+            value={selectedSpeedFilter}
+            onChange={(e) => setSelectedSpeedFilter(e.target.value)}
+            className="p-2 border border-gray-300 rounded bg-secondary text-text01 ml-2"
+          >
+            <option value="">All</option>
+            <option value="below 15 knots">Below 15 knots</option>
+            <option value="above 20 knots">Above 20 knots</option>
+          </select>
+        </div>
+        <div>
+          <label htmlFor="timeFilter">Filter by Time:</label>
+          <select
+            id="timeFilter"
+            value={selectedTimeFilter}
+            onChange={(e) => setSelectedTimeFilter(e.target.value)}
+            className="p-2 border border-gray-300 rounded bg-secondary text-text01 ml-2"
+          >
+            <option value="">All</option>
+            <option value="last 5 hours">Last 5 hours</option>
+            <option value="last 10 hours">Last 10 hours</option>
+            <option value="last 15 hours">Last 15 hours</option>
+            <option value="last 24 hours">Last 24 hours</option>
+
+          </select>
+        </div>
       </div>
+      </div>
+      
 
       {/* Display total number of filtered ships */}
       <div className="mb-4 flex justify-between items-end text-text01">
@@ -63,8 +115,8 @@ const ShipTable = () => {
         </div>
       </div>
 
-      <table className="min-w-full border-[1px] border-text02 rounded-xl divide-y divide-text02">
-        <thead className="bg-secondary rounded-t-xl">
+      <table className="min-w-full border border-text02 rounded-xl divide-y divide-text02">
+        <thead className="bg-secondary rounded-xl">
           <tr>
             <th className="px-6 py-3 text-left text-xs font-medium text-text01 uppercase tracking-wider">Vessel</th>
             <th className="px-6 py-3 text-left text-xs font-medium text-text01 uppercase tracking-wider">Speed</th>
@@ -92,7 +144,7 @@ const ShipTable = () => {
               <td className="px-6 py-4 whitespace-nowrap text-sm text-text01">{ship.lat}</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-text01">{ship.lng}</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-text01">{ship.destination}</td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-text01">{ship.positionReceived}</td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-text01">{ship.positionReceived} hours ago</td>
             </tr>
           ))}
         </tbody>
