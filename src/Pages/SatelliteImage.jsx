@@ -79,6 +79,7 @@ const SatelliteImage = () => {
               key={index}
               className='size-20 aspect-square object-cover rounded-lg cursor-pointer'
               src={image}
+              loading="lazy"
               alt={`Thumbnail ${index}`}
               onClick={() => handleThumbnailClick(image)}
             />
